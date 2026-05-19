@@ -1,0 +1,60 @@
+#include <map>
+#include <unordered_map>
+#include <thread>
+#include <cstdint>
+#include <functional>
+#include <chrono>
+#include <memory>
+
+typedef std::function<bool(void)> TimerEvent;
+typedef uint32_t TimerId;
+
+class Timer
+{
+private:
+    /* data */
+    friend class TimerQueue;
+    uint32_t interval_ = 0;
+    uint64_t next_timeout_ = 0;
+    TimerEvent event_callback_ = []
+    { return false; };
+
+public:
+    Timer(const TimerEvent &event, uint32_t mesc) : event_callback_(event), interval_(mesc) {}
+    ~Timer() {};
+    static void Sleep(uint32_t mesc)
+    {
+        std::this_thread::sleep_for(std::chrono::microseconds(mesc));
+    }
+
+private:
+    void SetNextTimeOut(uint64_t time_point)
+    {
+        next_timeout_ = time_point + interval_;
+    }
+
+    int64_t GetNextTimeOut()
+    {
+        return next_timeout_;
+    }
+};
+
+class TimerQueue
+{
+private:
+    /* data */
+    uint32_t last_timer_id_ = 0;
+    std::unordered_map<TimerId, std::shared_ptr<Timer>> timers_;
+    std::map<std::pair<int64_t, TimerId>, std::shared_ptr<Timer>> events_;
+
+public:
+    TimerQueue(/* args */){};
+    ~TimerQueue(){};
+
+    TimerId AddTimer(const TimerEvent &event, uint32_t mesc);
+    void RemoveTimer(TimerId timerId);
+    void HandleTimerEvent();
+
+protected:
+    int64_t GetTimeNow();
+};
