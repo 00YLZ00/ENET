@@ -19,8 +19,15 @@ void test1()
     dg(ret);
 }
 
+void test2()
+{
+    int a, b;
+    std::cin >> a >> b;
+    std::cout << "a+b= " << a + b << '\n';
+}
+
 int main()
 {
-    
+    test2();
     return 0;
 }
