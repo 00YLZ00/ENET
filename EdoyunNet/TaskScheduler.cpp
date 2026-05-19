@@ -11,6 +11,12 @@ TaskScheduler::~TaskScheduler()
 void TaskScheduler::Start()
 {
     is_shutdown_ = false;
+    while (!is_shutdown_)
+    {
+        this->timer_queue_.HandleTimerEvent();
+        this->HandleEvent();
+    }
+    
 }
 
 void TaskScheduler::Stop()

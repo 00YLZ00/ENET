@@ -14,3 +14,7 @@ add_executable(
     EdoyunNet
     ${SRC_LIST}
 )
+
+# 添加线程库
+find_package(Threads REQUIRED)
+target_link_libraries(EdoyunNet PRIVATE Threads::Threads)
