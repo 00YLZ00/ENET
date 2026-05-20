@@ -1,3 +1,4 @@
+#pragma once
 #include "TaskScheduler.h"
 #include <unordered_map>
 

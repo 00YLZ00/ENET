@@ -4,6 +4,7 @@
 
 BufferReader::BufferReader(uint32_t initial_size)
 {
+    buffer_.resize(initial_size);
 }
 
 BufferReader::~BufferReader()
