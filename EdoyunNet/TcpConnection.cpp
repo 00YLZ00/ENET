@@ -8,9 +8,9 @@ TcpConnection::TcpConnection(TaskScheduler *task_schduler, int sockfd)
     //
     task_schduler_->AddTimer([this]()
                              {
-        char buffer[] = "你好，我是服务器"; 
+        char buffer[] = "你好，我是服务器\n"; 
         this->Send(buffer,sizeof(buffer));
-        return true; }, 1000);
+        return true; }, 10000);
 
     //
 

@@ -32,9 +32,12 @@ void test3()
 {
 }
 
+
 int main()
 {
     uint32_t count = std::thread::hardware_concurrency();
+    dg(count)
+    printf("%d %s\n",__LINE__,__FILE__);
     EventLoop loop(2);
     TcpServer *server = new TcpServer(&loop);
     // bool status = server->Start("192.168.31.30",4836);

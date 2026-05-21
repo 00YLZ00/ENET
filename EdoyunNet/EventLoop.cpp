@@ -64,7 +64,7 @@ void EventLoop::RemoveChannel(ChannelPtr &channel)
 
 void EventLoop::Loop()
 {
-    if (task_schdulers_.empty())
+    if (!task_schdulers_.empty())
     {
         return;
     }
