@@ -52,5 +52,6 @@ void TimerQueue::HandleTimerEvent()
 int64_t TimerQueue::GetTimeNow()
 {
     auto time_point = std::chrono::steady_clock::now();
-    return std::chrono::duration_cast<std::chrono::microseconds>(time_point.time_since_epoch()).count();
+    //return std::chrono::duration_cast<std::chrono::microseconds>(time_point.time_since_epoch()).count();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch()).count();
 }

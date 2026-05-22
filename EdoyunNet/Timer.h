@@ -26,7 +26,8 @@ public:
     ~Timer() {};
     static void Sleep(uint32_t mesc)
     {
-        std::this_thread::sleep_for(std::chrono::microseconds(mesc));
+        //std::this_thread::sleep_for(std::chrono::microseconds(mesc));
+        std::this_thread::sleep_for(std::chrono::milliseconds(mesc));
     }
 
 private:
