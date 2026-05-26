@@ -35,7 +35,7 @@ void test3()
     uint32_t count = std::thread::hardware_concurrency();
     dg(count)
         printf("%d %s\n", __LINE__, __FILE__);
-    EventLoop loop(2);
+    EventLoop loop(1);
     TcpServer *server = new TcpServer(&loop);
     // bool status = server->Start("192.168.31.30",4836);
     bool status = server->Start("0.0.0.0", 1996);
@@ -86,7 +86,7 @@ void Timer_test()
     TimerQueue timer_queue_;
     ret = timer_queue_.AddTimer([&buffer_writer_, &fd]()
                                 {
-        std::string s= "你好，我是服务器\n"; 
+        std::string s= "你好，我是服务器"; 
         buffer_writer_.Append(s.c_str(),s.size());
         buffer_writer_.Send(fd);
         return true; }, 1000);
@@ -100,6 +100,8 @@ void Timer_test()
 
 int main()
 {
+    char buffer[] = "你好，我是柴永康"; 
+    dg(buffer);
     test3();
     return 0;
 }

@@ -1,5 +1,7 @@
+#pragma once
 #include "TcpConnection.h"
 #include <unistd.h>
+#include<cstring>
 
 TcpConnection::TcpConnection(TaskScheduler *task_schduler, int sockfd)
     : task_schduler_(task_schduler), read_buffer_(new BufferReader()), write_buffer_(new BufferWriter(500)), channel_(new Channel(sockfd))
@@ -8,9 +10,20 @@ TcpConnection::TcpConnection(TaskScheduler *task_schduler, int sockfd)
     //
     task_schduler_->AddTimer([this]()
                              {
-        char buffer[] = "你好，我是服务器"; 
-        this->Send(buffer,sizeof(buffer));
+        char buffer[] = "hello,I am server1"; 
+        //std::string buffer= "你好，我是服务器"; 
+        
+        this->Send(buffer,strlen(buffer));
+        //this->Send(buffer.data(),buffer.size());
         return true; }, 1000);
+    task_schduler_->AddTimer([this]()
+                             {
+        char buffer[] = "hello,I am server2"; 
+        //std::string buffer= "你好，我是服务器"; 
+        
+        this->Send(buffer,strlen(buffer));
+        //this->Send(buffer.data(),buffer.size());
+        return true; }, 500);
 
     //
 
