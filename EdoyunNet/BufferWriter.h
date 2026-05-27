@@ -2,6 +2,13 @@
 #include <memory>
 #include <queue>
 
+void WriteUint32BE(char* p,uint32_t value);
+void WriteUint32LE(char* p,uint32_t value);
+void WriteUint24BE(char* p,uint32_t value);
+void WriteUint24LE(char* p,uint32_t value);
+void WriteUint16BE(char* p,uint32_t value);
+void WriteUint16LE(char* p,uint32_t value);
+
 class BufferWriter
 {
 private:

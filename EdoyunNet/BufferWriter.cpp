@@ -73,3 +73,46 @@ int BufferWriter::Send(int sockfd)
     } while (count > 0);
     return ret;
 }
+
+
+void WriteUint32BE(char *p, uint32_t value)
+{
+    p[0] = value >> 24;
+    p[1] = value >> 16;
+    p[2] = value >> 8;
+    p[3] = value & 0xff;
+}
+
+void WriteUint32LE(char *p, uint32_t value)
+{
+    p[0] = value & 0xff;
+    p[1] = value >> 8;
+    p[2] = value >> 16;
+    p[3] = value >> 24;
+}
+
+void WriteUint24BE(char *p, uint32_t value)
+{
+    p[0] = value >> 16;
+    p[1] = value >> 8;
+    p[2] = value & 0xff;
+}
+
+void WriteUint24LE(char *p, uint32_t value)
+{
+    p[0] = value & 0xff;
+    p[1] = value >> 16;
+    p[2] = value >> 8;
+}
+
+void WriteUint16BE(char *p, uint32_t value)
+{
+    p[0] = value >> 8;
+    p[1] = value & 0xff;
+}
+
+void WriteUint16LE(char *p, uint32_t value)
+{
+    p[0] = value & 0xff;
+    p[1] = value >> 8;
+}

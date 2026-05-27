@@ -3,6 +3,13 @@
 #include <cstdint>
 #include <string>
 
+uint32_t ReadUint32BE(char* data);
+uint32_t ReadUint32LE(char* data);
+uint32_t ReadUint24BE(char* data);
+uint32_t ReadUint24LE(char* data);
+uint16_t ReadUint16BE(char* data);
+uint16_t ReadUint16LE(char* data);
+
 class BufferReader
 {
 private:

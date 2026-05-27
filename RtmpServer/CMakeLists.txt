@@ -8,3 +8,8 @@ add_executable(
     RtmpServer
     ${RTMP_SRC}
 )
+
+target_link_libraries(
+    RtmpServer
+    EdoyunNet
+)
