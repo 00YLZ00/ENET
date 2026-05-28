@@ -1,4 +1,3 @@
-#pragma once
 #include <functional>
 #include <memory>
 #include "Channel.h"
@@ -10,17 +9,16 @@ typedef std::function<void(int)> NewConnectCallback;
 
 class Acceptor
 {
+public:
+    Acceptor(EventLoop* eventloop);
+    ~Acceptor();
+    inline void SetNewConnectCallback(const NewConnectCallback& cb) {new_connectCb_ = cb;};
+    int Listen(std::string ip,uint16_t port);
+    void Close();
 private:
-    EventLoop *loop_ = nullptr;
-    ChannelPtr channelPtr_ = nullptr;
+    void OnAccept();
+    EventLoop* loop_ = nullptr;
+    ChannelPtr channelPtr_ = nullptr;;
     std::shared_ptr<TcpSocket> tcp_socket_;
     NewConnectCallback new_connectCb_;
-    void OnAccept();
-
-public:
-    Acceptor(EventLoop *eventloop);
-    ~Acceptor();
-    inline void SetNewConnectCallback(const NewConnectCallback &cb) { new_connectCb_ = cb; }
-    int Listen(std::string ip, uint16_t port);
-    void Close();
 };

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _TCPSERVER_H_
+#define _TCPSERVER_H_
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -28,3 +29,4 @@ private:
     bool is_stared_ = false;
     std::unordered_map<int,TcpConnection::Ptr> connects_;
 };
+#endif

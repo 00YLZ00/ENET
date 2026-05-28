@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef _TCPSOCKET_H_
+#define _TCPSOCKET_H_
 #include <string>
 
 class SocketUtil
@@ -16,23 +16,17 @@ public:
 
 class TcpSocket
 {
-private:
-    /* data */
-    int sockfd_ = -1;
-
 public:
-    TcpSocket(/* args */);
+    TcpSocket();
     virtual ~TcpSocket();
-
-public:
     int Create();
     bool Bind(std::string ip, short port);
     bool Listen(int backlog);
-    int Accept();
+    int  Accept();
     void Close();
     void ShutdownWrite();
-    int GetSocket() const
-    {
-        return sockfd_;
-    }
+    int GetSocket() const { return sockfd_; }
+private:
+    int sockfd_ = -1;
 };
+#endif

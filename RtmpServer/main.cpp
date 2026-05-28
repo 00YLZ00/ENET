@@ -11,14 +11,14 @@ int main()
     rtmp_server->SetEventCallback([](std::string type,std::string stream_path){
         printf("[Event]%s,stream_path%s\n",type.c_str(),stream_path.c_str());
     });
-    if(!rtmp_server->Start("172.21.205.121",1935))
+    if(!rtmp_server->Start("0.0.0.0",1935))
     {
         printf("rtmp server failed\n");
     }
     printf("rtmp server success\n");
-    //getchar();
-    	while (1) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
-	}
+    getchar();
+    // 	while (1) {
+	// 	std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	// }
     return 0;
 }
